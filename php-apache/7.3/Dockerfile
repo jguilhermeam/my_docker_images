@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
 	zip \
 	libc-client-dev \
 	libkrb5-dev \
+        libicu-dev \
     && pecl install mcrypt-1.0.4 \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-configure gd \
@@ -22,4 +23,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap \
     && docker-php-ext-install zip \
-    && a2enmod rewrite
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl \
+    && a2enmod rewrite \
+    && useradd joao \
+    && sed -i 's|www-data|joao|g' /etc/apache2/envvars

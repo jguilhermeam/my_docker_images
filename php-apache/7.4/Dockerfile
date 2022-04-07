@@ -24,4 +24,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl \
-    && a2enmod rewrite
+    && a2enmod rewrite \
+    && useradd joao \
+    && sed -i 's|www-data|joao|g' /etc/apache2/envvars
