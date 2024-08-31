@@ -1,7 +1,7 @@
 FROM php:7.1-apache
 
 RUN apt-get update && apt-get install -y \
-    libfreetype6-dev \
+        libfreetype6-dev \
         libmcrypt-dev \
         libjpeg-dev \
         libpng-dev \
@@ -18,8 +18,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd \
     && docker-php-ext-install mysqli \
     && docker-php-ext-install gettext \
-    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install pdo pdo_mysql \
+    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install imap \
     && docker-php-ext-install zip \
     && docker-php-ext-configure intl \
